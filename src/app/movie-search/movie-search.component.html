@@ -1,0 +1,34 @@
+<div class="searchComponent">
+  <!-- search box -->
+    <input 
+      id="searchQuery" 
+      type="text" 
+      class="searchQuery" 
+      placeholder="Movie Title"
+      [(ngModel)]="searchQuery"
+      (keyup.enter)="searchByTitle()">
+  <!-- search button -->
+  <button type="button" (click)="searchByTitle()" class="searchButton">Search</button>
+  <br>
+  <br>
+  <!-- search result -->
+  <div class="movieList"
+    *ngFor="let movie of movieList | async">
+        <img 
+        [src]="movie.Poster" 
+        class="moviePoster" 
+        [alt]="movie.Title">
+        <div class="movieText">
+          {{ movie.Title }} 
+          <br> 
+          <span class="badge badge-primary">{{ movie.Type | uppercase }}</span>
+          <br>
+          <!-- link to movie info -->
+          <a  routerLink="/app-movie-info" 
+              [queryParams]="{ movieId: movie.imdbID }" 
+              class="movieLink"> 
+              Go to Movie
+          </a>
+        </div>
+  </div>
+</div>

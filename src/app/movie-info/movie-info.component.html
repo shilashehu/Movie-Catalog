@@ -1,0 +1,33 @@
+<div class="movieInfo" *ngIf="movieInfo | async as movie">
+
+  <!-- Movie Title -->
+  <h1> {{ movie.Title }} | {{ movie.Type | uppercase }} </h1>
+
+  <!-- Movie Poster -->
+  <div class="row">
+      <img 
+        class="img-fluid" 
+        [src]="movie.Poster " 
+        [alt]="movie.Title">
+  </div>
+  
+  <!-- Movie Details -->
+  <div class="row">
+    <span class="label">Year: </span> <p>{{ movie.Year }}</p> 
+    <span class="label">IMDB Rating: </span> <p>{{ movie.imdbRating }}</p> 
+    <span class="label">Actors: </span> <p> {{ movie.Actors }}</p>
+    <span class="label">Genre: </span> <p> {{ movie.Genre }}</p>
+    <span class="label">Released: </span> <p>{{ movie.Released }}</p> 
+    <span class="label">Plot: </span>
+    <p>{{ movie.Plot }}</p>
+    <span class="label">Ratings: </span>    
+    <ul class="list-group">
+      <li 
+        class="list-group-item"
+        *ngFor="let rating of movie.Ratings">
+        {{ rating.Source }} - {{ rating.Value }}
+      </li>
+    </ul>
+  </div>
+
+</div>
